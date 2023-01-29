@@ -9,22 +9,29 @@
 (def F (flex/source 32))
 
 (defn update-F!
-  [t]
+  [s]
   (flex/batch
-   (C (* (- t 32) (/ 5 9)))
-   (F t)))
+   (let [t (js/parseFloat s)]
+     (when (js/isNaN t)
+       (throw (ex-info "Not a number" {:s s})))
+     (C (* (- t 32) (/ 5 9)))
+     (F t))))
 
 (defn update-C!
-  [t]
+  [s]
   (flex/batch
-   (C t)
-   (F (+ 32 (* t (/ 9 5))))))
+   (let [t (js/parseFloat s)]
+    (when (js/isNaN t)
+      (throw (ex-info "Not a number" {:s s})))
+    (C t)
+    (F (+ 32 (* t (/ 9 5)))))))
 
 (defn input
+  "A controlled number input"
   [v on-input]
   (let [el (d/input
             {:type "number" :value v
-             :oninput #(on-input (js/parseFloat (.. % -target -value)))})]
+             :oninput #(on-input (.. % -target -value))})]
     (when (not= (str v) (.-value el))
       (set! (.-value el) v))))
 
