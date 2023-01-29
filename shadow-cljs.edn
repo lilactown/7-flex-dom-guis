@@ -1,0 +1,8 @@
+{:deps true
+ :builds {:app {:target :browser
+                :output-dir "public/js"
+                :asset-path "/js"
+                :modules {:main {:entries [town.lilac.guis.main]
+                                 :init-fn town.lilac.guis.main/init}}
+                :devtools {:http-root "public"
+                           :http-port 3456}}}}

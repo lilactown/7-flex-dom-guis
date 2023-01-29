@@ -1,0 +1,4 @@
+{:paths ["src"]
+ :deps {town.lilac/flex {:local/root "../flex2"}
+        town.lilac/dom {:local/root "../dom"}
+        thheller/shadow-cljs {:mvn/version "LATEST"}}}
