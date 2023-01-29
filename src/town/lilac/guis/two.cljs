@@ -14,7 +14,7 @@
    (let [t (js/parseFloat s)]
      (when (js/isNaN t)
        (throw (ex-info "Not a number" {:s s})))
-     (C (* (- t 32) (/ 5 9)))
+     (C (.toFixed (* (- t 32) (/ 5 9))))
      (F t))))
 
 (defn update-C!
@@ -24,13 +24,15 @@
     (when (js/isNaN t)
       (throw (ex-info "Not a number" {:s s})))
     (C t)
-    (F (+ 32 (* t (/ 9 5)))))))
+    (F (.toFixed (+ 32 (* t (/ 9 5))))))))
 
 (defn input
   "A controlled number input"
   [v on-input]
   (let [el (d/input
-            {:type "number" :value v
+            {:class "border p-1 rounded w-24"
+             :type "number"
+             :value v
              :oninput #(on-input (.. % -target -value))})]
     (when (not= (str v) (.-value el))
       (set! (.-value el) v))))
@@ -39,8 +41,9 @@
   []
   (fd/track
    (d/div
-    (d/div (input @C update-C!))
-    (d/div (input @F update-F!)))))
+    {:class "p-5"}
+    (input @C update-C!) (d/text " Celsius = ")
+    (input @F update-F!) (d/text " Fahrenheit"))))
 
 (comment
   (C 32))
