@@ -5,7 +5,6 @@
    [town.lilac.flex.dom :as fd]))
 
 (def C (flex/source 0))
-
 (def F (flex/source 32))
 
 (defn update-F!

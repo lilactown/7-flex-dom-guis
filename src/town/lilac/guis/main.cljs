@@ -4,7 +4,8 @@
    [town.lilac.flex :as flex]
    [town.lilac.flex.dom :as fd]
    [town.lilac.guis.one :as one]
-   [town.lilac.guis.two :as two]))
+   [town.lilac.guis.two :as two]
+   [town.lilac.guis.three :as three]))
 
 (defonce selected (flex/source 1))
 
@@ -33,14 +34,15 @@
       (d/ul
        (menu-item "Counter" #(selected 1) (= 1 @selected))
        (menu-item "Temperature converter" #(selected 2) (= 2 @selected))
-       (menu-item "Flight booker" nil false)
+       (menu-item "Flight booker" #(selected 3) (= 3 @selected))
        (menu-item "Timer" nil false)
        (menu-item "CRUD" nil false)
        (menu-item "Circle Drawer" nil false)
        (menu-item "Cells" nil false)))
      (case @selected
        1 (one/start!)
-       2 (two/start!))))))
+       2 (two/start!)
+       3 (three/start!))))))
 
 (defn ^:dev/after-load start!
   []
