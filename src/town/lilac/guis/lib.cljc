@@ -28,5 +28,7 @@
 (defmacro textbox
   [opts]
   `(d/input
-    {:class ["border p-1 rounded" (:class ~opts)]
+    {:class ["border p-1 rounded"
+             "disabled:bg-gray-100"
+             (:class ~opts)]
      :& (dissoc ~opts :class)}))

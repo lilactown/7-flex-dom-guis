@@ -23,18 +23,18 @@
     (d/option {:value "one-way"} (d/text "one-way flight"))
     (d/option {:value "return"} (d/text "return flight")))
    (d/div
-    (d/input {:type "text"
-              :class "border p-1 rounded"
-              :oninput #(flight
-                         (fn [m]
-                           (assoc m :start (.. % -target -value))))}))
+    (lib/textbox
+     {:type "text"
+      :oninput #(flight
+                 (fn [m]
+                   (assoc m :start (.. % -target -value))))}))
    (d/div
-    (d/input {:type "text"
-              :class "border p-1 rounded disabled:bg-gray-100"
-              :disabled (or (= :one-way (:option @flight)) nil)
-              :oninput #(flight
-                         (fn [m]
-                           (assoc m :return (.. % -target -value))))}))
+    (lib/textbox
+     {:type "text"
+      :disabled (or (= :one-way (:option @flight)) nil)
+      :oninput #(flight
+                 (fn [m]
+                   (assoc m :return (.. % -target -value))))}))
    (lib/button
     {:onclick #(js/alert "hi")
      :disabled true}
