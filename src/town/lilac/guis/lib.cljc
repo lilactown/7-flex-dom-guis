@@ -9,7 +9,6 @@
   (let [[opts children] (if (map? (first args))
                           [(first args) (rest args)]
                           [nil args])]
-    (prn opts children)
     `(d/button
       {:class ["bg-blue-500"
                "hover:bg-blue-700"
@@ -24,3 +23,10 @@
                (:class ~opts)]
        :& (dissoc ~opts :class)}
       ~@children)))
+
+
+(defmacro textbox
+  [opts]
+  `(d/input
+    {:class ["border p-1 rounded" (:class ~opts)]
+     :& (dissoc ~opts :class)}))

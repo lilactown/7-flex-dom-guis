@@ -2,7 +2,8 @@
   (:require
    [town.lilac.dom :as d]
    [town.lilac.flex :as flex]
-   [town.lilac.flex.dom :as fd]))
+   [town.lilac.flex.dom :as fd]
+   [town.lilac.guis.lib :as lib]))
 
 (def C (flex/source 0))
 (def F (flex/source 32))
@@ -25,11 +26,11 @@
     (C t)
     (F (.toFixed (+ 32 (* t (/ 9 5))))))))
 
-(defn input
+(defn numberbox
   "A controlled number input"
   [v on-input]
-  (let [el (d/input
-            {:class "border p-1 rounded w-24"
+  (let [el (lib/textbox
+            {:class "w-24"
              :type "number"
              :value v
              :oninput #(on-input (.. % -target -value))})]
@@ -41,8 +42,8 @@
   (fd/track
    (d/div
     {:class "p-5"}
-    (input @C update-C!) (d/text " Celsius = ")
-    (input @F update-F!) (d/text " Fahrenheit"))))
+    (numberbox @C update-C!) (d/text " Celsius = ")
+    (numberbox @F update-F!) (d/text " Fahrenheit"))))
 
 (comment
   (C 32))
