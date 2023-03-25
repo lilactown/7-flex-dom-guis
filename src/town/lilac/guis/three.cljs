@@ -3,7 +3,6 @@
    [clojure.string :as string]
    [town.lilac.dom :as d]
    [town.lilac.flex :as flex]
-   [town.lilac.flex.dom :as fd]
    [town.lilac.guis.lib :as lib]))
 
 (defonce flight

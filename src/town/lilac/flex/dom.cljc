@@ -6,8 +6,7 @@
 
 (defmacro track
   [& body]
-  `(let [track-id# (gensym "track")
-         pfn# (fn [] ~@body)
+  `(let [pfn# (fn [] ~@body)
          fx# (flex/effect
               [el#]
               (if (some? el#)
