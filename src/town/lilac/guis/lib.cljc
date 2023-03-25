@@ -27,8 +27,13 @@
 
 (defmacro textbox
   [opts]
-  `(d/input
-    {:class ["border p-1 rounded"
-             "disabled:bg-gray-100"
-             (:class ~opts)]
-     :& (dissoc ~opts :class)}))
+  `(let [^js el# (d/input
+              {:class ["border p-1 rounded"
+                       "disabled:bg-gray-100"
+                       (:class ~opts)]
+               :& (dissoc ~opts :class)})]
+     (when (and (some? (:value ~opts))
+                (not= (:value ~opts)
+                      (.-value el#)))
+       (set! (.-value el#) (:value ~opts)))
+     el#))
