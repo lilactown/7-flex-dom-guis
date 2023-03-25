@@ -55,6 +55,7 @@
          :selected (= id @selected)}
         (d/text surname ", " name))))
     (d/div
+     {:class "flex flex-col gap-1"}
      (d/div
       (d/label (d/text "Name: "))
       (lib/textbox {:id "name"
