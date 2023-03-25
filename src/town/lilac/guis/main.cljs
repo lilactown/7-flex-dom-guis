@@ -46,9 +46,18 @@
        3 (three/start!)
        4 (four/start!))))))
 
+
+(defonce root nil)
+
 (defn ^:dev/after-load start!
   []
-  (d/patch (js/document.getElementById "root") app))
+  (when root
+    (root))
+  (let [fx (flex/effect
+            []
+            (d/patch (js/document.getElementById "root") app)
+            #(prn :root/dispose))]
+    (set! root (fx))))
 
 (defn init
   []
