@@ -10,7 +10,11 @@
 
 (comment
   @timer
-  (timer #(update % :value + 100)))
+  ;; increment by a second
+  (timer #(update % :value + 1000))
+  ;; reset
+  (timer (constantly {:end (* 60 1000)
+                      :value 0})))
 
 (def timer-fx
   (flex/effect
@@ -21,19 +25,28 @@
                          (update % :value + 100)
                          %)))
              100)]
-     (prn :effect/start id)
-     #(do (prn :effect/cleanup id)
+     (prn :timer/start id)
+     #(do (prn :timer/cleanup id)
           (js/clearInterval id)))))
 
 (defn start!
   []
   (timer-fx)
+  ;; wrap in track so that this outer function doesn't get called again on each
+  ;; update of `@timer`, running the `timer-fx` effect again
   (fd/track
    (d/div
+    (d/progress {:max (:end @timer)
+                 :value (:value @timer)})
     (d/div (d/text (:value @timer)))
-    (d/input {:type "range"
-              :value (:end @timer)
-              :max (* 60 5000)
-              :oninput (fn [e]
-                         (timer #(assoc  % :end (js/parseInt
-                                                 (.. e -target -value)))))}))))
+    (let [v (:end @timer)
+          slider (d/input
+                  {:type "range"
+                   :value v
+                   :max (* 60 5000)
+                   :oninput (fn [e]
+                              (timer
+                               #(assoc % :end (js/parseInt
+                                               (.. e -target -value)))))})]
+      (when (not= (str v) (.-value slider))
+        (set! (.-value slider) v))))))
