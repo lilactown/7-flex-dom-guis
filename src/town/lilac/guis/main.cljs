@@ -6,7 +6,9 @@
    [town.lilac.guis.one :as one]
    [town.lilac.guis.two :as two]
    [town.lilac.guis.three :as three]
-   [town.lilac.guis.four :as four]))
+   [town.lilac.guis.four :as four]
+   [town.lilac.guis.five :as five]
+   ))
 
 (defonce selected (flex/source 1))
 
@@ -37,14 +39,15 @@
        (menu-item "Temperature converter" #(selected 2) (= 2 @selected))
        (menu-item "Flight booker" #(selected 3) (= 3 @selected))
        (menu-item "Timer" #(selected 4) (= 4 @selected))
-       (menu-item "CRUD" nil false)
+       (menu-item "CRUD" #(selected 5) (= 5 @selected))
        (menu-item "Circle Drawer" nil false)
        (menu-item "Cells" nil false)))
      (case @selected
        1 (one/start!)
        2 (two/start!)
        3 (three/start!)
-       4 (four/start!))))))
+       4 (four/start!)
+       5 (five/start!))))))
 
 
 (defonce root nil)
