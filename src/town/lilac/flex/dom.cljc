@@ -8,8 +8,6 @@
   [& body]
   `(let [pfn# (fn [] ~@body)
          fx# (flex/effect
-              [el#]
-              (if (some? el#)
-                (dom/patch-outer el# pfn#)
-                (pfn#)))]
+              ([] (pfn#))
+              ([el#] (dom/patch-outer el# pfn#)))]
      (fx#)))
