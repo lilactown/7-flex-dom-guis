@@ -19,6 +19,10 @@
   (timer (constantly initial)))
 
 (def timer-fx
+  )
+
+(defn start!
+  []
   (flex/effect
    []
    (let [id (js/setInterval
@@ -28,14 +32,10 @@
                          %)))
              100)]
      ;; clear interval on dispose
-     #(js/clearInterval id))))
-
-(defn start!
-  []
-  (timer-fx)
-  ;; wrap in track so that this outer function doesn't get called again on each
+     #(js/clearInterval id)))
+  ;; wrap in scope so that this outer function doesn't get called again on each
   ;; update of `@timer`, running the `timer-fx` effect again
-  (fd/track
+  (fd/scope
    (d/div
     {:class "p-5 flex flex-col gap-2"}
     (d/progress

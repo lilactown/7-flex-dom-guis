@@ -29,7 +29,7 @@
     (d/h1
      {:class "text-xl"}
      (d/text "7 GUIs")))
-   (fd/track
+   (fd/scope
     (d/div
      {:class "flex flex-1"}
      (d/div

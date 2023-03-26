@@ -4,10 +4,10 @@
    [town.lilac.dom :as dom])
   #?(:cljs (:require-macros [town.lilac.flex.dom])))
 
-(defmacro track
+(defmacro scope
   [& body]
-  `(let [pfn# (fn [] ~@body)
-         fx# (flex/effect
-              ([] (pfn#))
-              ([el#] (dom/patch-outer el# pfn#)))]
-     (fx#)))
+  `(let [pfn# (fn [] ~@body)]
+     (flex/effect
+      ([] (pfn#))
+      ([el#]
+       (dom/patch-outer el# pfn#)))))

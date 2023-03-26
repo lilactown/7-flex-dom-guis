@@ -11,7 +11,7 @@
   []
   (d/div
    {:class "flex gap-4 justify-center content-center p-5"}
-   (fd/track
+   (fd/scope
     (d/div
      {:class "py-1"}
      (d/text @counter)))

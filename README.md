@@ -7,7 +7,7 @@ Implements tasks 1-5 of the [7 GUIs](https://eugenkiss.github.io/7guis/tasks/).
 
 ## Important bits
 
-[town.lilac.flex.dom/track](./src/town/lilac/flex/dom.cljc) is the macro that
+[town.lilac.flex.dom/scope](./src/town/lilac/flex/dom.cljc) is the macro that
 bridges the flex effect system to DOM patching. It expects that the body will
 execute a number of `town.lilac.dom` expressions. Any signals or sources
 dereferenced in the body will trigger a patch of the last element returned.

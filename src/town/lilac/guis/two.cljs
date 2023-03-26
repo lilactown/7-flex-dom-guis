@@ -39,11 +39,10 @@
 
 (defn start!
   []
-  (fd/track
-   (d/div
-    {:class "p-5"}
-    (numberbox @C update-C!) (d/text " Celsius = ")
-    (numberbox @F update-F!) (d/text " Fahrenheit"))))
+  (d/div
+   {:class "p-5"}
+   (numberbox @C update-C!) (d/text " Celsius = ")
+   (numberbox @F update-F!) (d/text " Fahrenheit")))
 
 (comment
   (C 32))
