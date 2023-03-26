@@ -1,7 +1,7 @@
 {:paths ["src"]
- :deps {town.lilac/flex #_{:git/url "https://github.com/lilactown/flex/"
-                         :git/sha "3050ac5b6b36aaefba7974eb338d69be38522f6a"}
-        {:local/root "../flex2"}
+ :deps {town.lilac/flex {:git/url "https://github.com/lilactown/flex/"
+                         :git/sha "346bad039b560a62529a39af66e0afe35565b125"}
+        #_{:local/root "../flex2"}
         town.lilac/dom {:git/url "https://github.com/lilactown/dom/"
                         :git/sha "131166f0a619ca84ed70a479c234cd0e9fb87ee3"}
         #_{:local/root "../dom"}
