@@ -1,8 +1,8 @@
 (ns town.lilac.guis.three
   (:require
    [clojure.string :as string]
-   [town.lilac.dom :as d]
    [town.lilac.flex :as flex]
+   [town.lilac.flex.dom :as d]
    [town.lilac.guis.lib :as lib]))
 
 (defonce flight

@@ -1,8 +1,7 @@
 (ns town.lilac.guis.two
   (:require
-   [town.lilac.dom :as d]
    [town.lilac.flex :as flex]
-   [town.lilac.flex.dom :as fd]
+   [town.lilac.flex.dom :as d]
    [town.lilac.guis.lib :as lib]))
 
 (def C (flex/source 0))

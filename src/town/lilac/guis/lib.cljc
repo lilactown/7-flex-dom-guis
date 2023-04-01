@@ -1,6 +1,6 @@
 (ns town.lilac.guis.lib
   (:require
-   [town.lilac.dom :as d])
+   [town.lilac.flex.dom :as d])
   #?(:cljs (:require-macros [town.lilac.guis.lib])))
 
 

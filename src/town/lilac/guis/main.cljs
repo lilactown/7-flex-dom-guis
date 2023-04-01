@@ -1,14 +1,12 @@
 (ns town.lilac.guis.main
   (:require
-   [town.lilac.dom :as d]
    [town.lilac.flex :as flex]
-   [town.lilac.flex.dom :as fd]
+   [town.lilac.flex.dom :as d]
    [town.lilac.guis.one :as one]
    [town.lilac.guis.two :as two]
    [town.lilac.guis.three :as three]
    [town.lilac.guis.four :as four]
-   [town.lilac.guis.five :as five]
-   ))
+   [town.lilac.guis.five :as five]))
 
 (defonce selected (flex/source 1))
 
@@ -22,6 +20,7 @@
 
 (defn app
   []
+  (prn :start-app)
   (d/div
    {:class "h-screen flex flex-col"}
    (d/div
@@ -29,39 +28,33 @@
     (d/h1
      {:class "text-xl"}
      (d/text "7 GUIs")))
-   (fd/scope
+   (d/div
+    {:class "flex flex-1"}
     (d/div
-     {:class "flex flex-1"}
-     (d/div
-      {:class "border-r"}
-      (d/ul
-       (menu-item "Counter" #(selected 1) (= 1 @selected))
-       (menu-item "Temperature converter" #(selected 2) (= 2 @selected))
-       (menu-item "Flight booker" #(selected 3) (= 3 @selected))
-       (menu-item "Timer" #(selected 4) (= 4 @selected))
-       (menu-item "CRUD" #(selected 5) (= 5 @selected))
-       (menu-item "Circle Drawer" nil false)
-       (menu-item "Cells" nil false)))
-     (case @selected
-       1 (one/start!)
-       2 (two/start!)
-       3 (three/start!)
-       4 (four/start!)
-       5 (five/start!))))))
+     {:class "border-r"}
+     (d/ul
+      (menu-item "Counter" #(selected 1) (= 1 @selected))
+      (menu-item "Temperature converter" #(selected 2) (= 2 @selected))
+      (menu-item "Flight booker" #(selected 3) (= 3 @selected))
+      (menu-item "Timer" #(selected 4) (= 4 @selected))
+      (menu-item "CRUD" #(selected 5) (= 5 @selected))
+      (menu-item "Circle Drawer" nil false)
+      (menu-item "Cells" nil false)))
+    (case @selected
+      1 (one/start!)
+      2 (two/start!)
+      3 (three/start!)
+      4 (four/start!)
+      5 (five/start!)))))
 
 
-(defonce root nil)
+(defonce root (d/create-root (js/document.getElementById "root") #(app)))
 
 (defn ^:dev/after-load start!
   []
-  (when root
-    (root))
-  (let [fx (flex/effect
-            []
-            (d/patch (js/document.getElementById "root") app)
-            #(prn :root/dispose))]
-    (set! root (fx))))
+  (flex/dispose! root)
+  (flex/run! root))
 
 (defn init
   []
-  (start!))
+  (prn :init))
