@@ -1,8 +1,5 @@
 {:paths ["src"]
- :deps {town.lilac/flex {:git/url "https://github.com/lilactown/flex/"
-                         :git/sha "346bad039b560a62529a39af66e0afe35565b125"}
-        #_{:local/root "../flex2"}
-        town.lilac/dom {:git/url "https://github.com/lilactown/dom/"
-                        :git/sha "131166f0a619ca84ed70a479c234cd0e9fb87ee3"}
-        #_{:local/root "../dom"}
+ :deps {town.lilac/flex-dom {:git/url "https://github.com/lilactown/flex-dom"
+                             :git/sha "01151b2bab68b7584df1e93048ffd94c4df3ab56"}
+        #_{:local/root "../flex-dom"}
         thheller/shadow-cljs {:mvn/version "LATEST"}}}
